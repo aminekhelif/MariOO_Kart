@@ -1,0 +1,87 @@
+@startuml
+
+!define BLOCK_SIZE 50
+!define BACKGROUND_COLOR #000000
+
+class Grass
+class Checkpoint {
+  - id: int
+  + Checkpoint(id: int)
+}
+class Boost
+class Lava
+class Road
+
+class Track {
+  - string: String
+  - __initial_position: Point
+  - __initial_angle: Angle
+  - track_objects: List<TrackObject>
+  - width: int
+  - height: int
+  - __karts: List<Kart>
+
+  + Track(string: String, initial_position: Point, initial_angle: Angle)
+  + initial_position: Point
+  + initial_angle: Angle
+  + karts: List<Kart>
+  + add_kart(kart: Kart): void
+  + parse_string(string: String): Tuple<List<TrackObject>, int, int>
+  + play(): int
+}
+
+abstract class TrackObject {
+  + draw(screen: Screen): void
+}
+
+class Kart {
+  - position: Point
+  - angle: Angle
+  - controller: Controller
+  - has_finished: boolean
+
+  + reset(initial_position: Point, initial_angle: Angle): void
+  + forward(): void
+  + backward(): void
+  + turn_left(): void
+  + turn_right(): void
+  + update_position(track_description: String, screen: Screen): void
+  + draw(screen: Screen): void
+}
+
+class Point {
+  - x: int
+  - y: int
+}
+
+class Angle {
+  - value: int
+}
+
+interface Controller {
+  + move(track_description: String): List<Boolean>
+}
+
+class PygameController implements Controller {
+  - keys: List<Boolean>
+
+  + move(track_description: String): List<Boolean>
+}
+
+class Screen {
+  + fill(color: String): void
+}
+
+Track --|> TrackObject
+TrackObject <|-- Grass
+TrackObject <|-- Checkpoint
+TrackObject <|-- Boost
+TrackObject <|-- Lava
+TrackObject <|-- Road
+TrackObject --|> Point
+TrackObject --|> Angle
+TrackObject --|> Screen
+Track --|> Kart
+Controller <|-- PygameController
+
+@enduml

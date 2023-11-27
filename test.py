@@ -39,6 +39,7 @@ class SequencePlayer():
         global final_time
         assert self.time <= final_time + MARGIN, ERROR_STRING + \
             "Le kart n'a pas fini le circuit dans le temps imparti, il faut revoir votre implementation"
+        print(self.time,final_time+MARGIN)
 
         if self.time >= len(self.sequence):
             command = self.sequence[-1]

@@ -185,7 +185,6 @@ class Track(object):
                 # sous le kart facilement
                 kart.update_position(self.string, screen)
 
-            for kart in self.karts:
                 # On dessine les karts
                 if not kart.has_finished:
                     kart.draw(screen)
