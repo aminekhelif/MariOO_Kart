@@ -1,11 +1,12 @@
-class Boost():  # Vous pouvez ajouter des classes parentes
-    
+from surface import Surface
+
+
+class Boost(Surface):  # Vous pouvez ajouter des classes parentes
+
     def __init__(self, x, y):
-        # A completer
-        pass
-    
-    def draw(self, sreen):
-        # A completer
-        pass
-    
-    # A completer
+        super().__init__(x, y)
+
+    def draw(self, screen):
+        super().draw()
+        self.surface.fill((255, 255, 0))
+        screen.blit(self.surface, (self.x, self.y))

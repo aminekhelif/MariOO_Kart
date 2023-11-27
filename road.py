@@ -1,11 +1,12 @@
-class Road():  # Vous pouvez ajouter des classes parentes
-    
+from surface import Surface
+
+
+class Road(Surface):
+
     def __init__(self, x, y):
-        # A completer
-        pass
-    
-    def draw(self, sreen):
-        # A completer
-        pass
-    
-    # A completer
+        super().__init__(x, y)
+
+    def draw(self, screen):
+        super().draw()
+        self.surface.fill((0, 0, 0))
+        screen.blit(self.surface, (self.x, self.y))
