@@ -1,14 +1,12 @@
 import pygame
-from surface import Surface
+from area import Area
+import os
 
-class Grass(Surface):  # Vous pouvez ajouter des classes parentes
+current_file_directory = os.path.dirname(__file__)
+
+
+class Grass(Area):
 
     def __init__(self, x, y):
-        super().__init__(x, y)
-
-    def draw(self, screen):
-        super().draw()
-        #self.image = pygame.image.load("C:/Users/ED/Desktop/Mes documents/Photo Identité.jpg")
-        #self.image = pygame.transform.scale(self.image, (50, 50))
-        self.surface.fill((0, 255, 0))
-        screen.blit(self.surface, (self.x, self.y))
+        Area.__init__(self, x, y)
+        self.surface = pygame.image.load(os.path.join(current_file_directory, 'ressources', "gras.jpg"))
